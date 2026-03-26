@@ -1,0 +1,578 @@
+[
+  {
+    "id": "pmay",
+    "name": "Pradhan Mantri Awas Yojana (PMAY)",
+    "category": "Housing",
+    "ministry": "Ministry of Housing and Urban Affairs",
+    "description": "Provides affordable housing to urban poor through credit-linked subsidy.",
+    "benefits": "Home loan subsidy up to ₹2.67 lakh. Interest subsidy of 6.5% for EWS/LIG.",
+    "eligibility": {
+      "max_income": 300000,
+      "area_type": ["rural", "urban"],
+      "no_pucca_house": true
+    },
+    "documents": ["Aadhaar Card", "Income Certificate", "Caste Certificate (if applicable)", "Bank Account Details", "Address Proof"],
+    "apply_link": "https://pmaymis.gov.in",
+    "apply_steps": [
+      "Visit the official PMAY website or nearest Common Service Centre (CSC)",
+      "Fill the online application form with personal and income details",
+      "Upload required documents — Aadhaar, income certificate, address proof",
+      "Submit and note your Application Reference Number",
+      "Track status on the PMAY portal using your reference number"
+    ],
+    "state": "central",
+    "tags": ["housing", "subsidy", "loan"]
+  },
+  {
+    "id": "ujjwala",
+    "name": "Pradhan Mantri Ujjwala Yojana (PMUY)",
+    "category": "Energy",
+    "ministry": "Ministry of Petroleum and Natural Gas",
+    "description": "Provides free LPG connections to women from BPL households.",
+    "benefits": "Free LPG connection with first refill and stove for BPL families.",
+    "eligibility": {
+      "gender": "female",
+      "max_income": 100000,
+      "bpl": true
+    },
+    "documents": ["Aadhaar Card", "BPL Ration Card", "Bank Account Details", "Passport Size Photo"],
+    "apply_link": "https://www.pmuy.gov.in",
+    "apply_steps": [
+      "Visit your nearest LPG distributor (HP Gas, Bharat Gas, or Indane)",
+      "Collect and fill the KYC Form (Form 1 & Form 2)",
+      "Submit with Aadhaar card and BPL ration card",
+      "Verification is done by the distributor",
+      "Connection is provided within 3 working days"
+    ],
+    "state": "central",
+    "tags": ["lpg", "women", "bpl", "energy"]
+  },
+  {
+    "id": "pm_kisan",
+    "name": "PM-KISAN (Pradhan Mantri Kisan Samman Nidhi)",
+    "category": "Agriculture",
+    "ministry": "Ministry of Agriculture",
+    "description": "Direct income support of ₹6,000/year to small and marginal farmers.",
+    "benefits": "₹6,000 per year in 3 equal installments of ₹2,000 each directly to bank account.",
+    "eligibility": {
+      "occupation": ["farmer"],
+      "max_land": 2,
+      "max_income": 200000
+    },
+    "documents": ["Aadhaar Card", "Land Ownership Documents", "Bank Account Details", "Kisan Credit Card (if available)"],
+    "apply_link": "https://pmkisan.gov.in",
+    "apply_steps": [
+      "Visit the PM-KISAN portal or nearest CSC",
+      "Click on 'New Farmer Registration'",
+      "Enter Aadhaar number and mobile number",
+      "Fill in land details and bank account information",
+      "Submit and verify via OTP sent to registered mobile"
+    ],
+    "state": "central",
+    "tags": ["agriculture", "farmer", "income support"]
+  },
+  {
+    "id": "ayushman_bharat",
+    "name": "Ayushman Bharat - PM Jan Arogya Yojana (PMJAY)",
+    "category": "Health",
+    "ministry": "Ministry of Health and Family Welfare",
+    "description": "World's largest health insurance scheme — ₹5 lakh health cover per family.",
+    "benefits": "Health insurance coverage of ₹5 lakh per family per year for secondary and tertiary care hospitalization.",
+    "eligibility": {
+      "max_income": 100000,
+      "secc_listed": true,
+      "area_type": ["rural", "urban"]
+    },
+    "documents": ["Aadhaar Card", "Ration Card", "SECC/PMJAY Eligibility Letter", "Income Proof"],
+    "apply_link": "https://pmjay.gov.in",
+    "apply_steps": [
+      "Check eligibility at pmjay.gov.in using mobile/ration card number",
+      "Visit nearest empaneled hospital or Ayushman Mitra kiosk",
+      "Carry Aadhaar card and ration card for verification",
+      "Ayushman Mitra will generate your e-card",
+      "Use e-card at any empaneled hospital for cashless treatment"
+    ],
+    "state": "central",
+    "tags": ["health", "insurance", "hospital", "medical"]
+  },
+  {
+    "id": "scholarship_central_obc",
+    "name": "Pre-Matric Scholarship for OBC Students",
+    "category": "Education",
+    "ministry": "Ministry of Social Justice and Empowerment",
+    "description": "Scholarship for OBC students studying in Class 1-10.",
+    "benefits": "₹1,000 to ₹2,500 per year for day scholars; higher for hostelers.",
+    "eligibility": {
+      "caste": ["obc"],
+      "max_age": 18,
+      "max_income": 100000,
+      "education": ["school"]
+    },
+    "documents": ["Aadhaar Card", "Caste Certificate", "Income Certificate", "School Enrollment Proof", "Bank Account Details"],
+    "apply_link": "https://scholarships.gov.in",
+    "apply_steps": [
+      "Register on the National Scholarship Portal at scholarships.gov.in",
+      "Login and select 'Pre-Matric Scholarship for OBC'",
+      "Fill in academic and personal details",
+      "Upload required documents",
+      "Submit before the deadline (usually October 31)"
+    ],
+    "state": "central",
+    "tags": ["scholarship", "obc", "education", "students"]
+  },
+  {
+    "id": "scholarship_sc_prematric",
+    "name": "Pre-Matric Scholarship for SC Students",
+    "category": "Education",
+    "ministry": "Ministry of Social Justice and Empowerment",
+    "description": "Scholarship to SC students in Class 9 and 10 to reduce dropout rates.",
+    "benefits": "₹3,500 per year (day scholars) to ₹7,000 per year (hostelers).",
+    "eligibility": {
+      "caste": ["sc"],
+      "max_age": 20,
+      "max_income": 250000,
+      "education": ["school"]
+    },
+    "documents": ["Aadhaar Card", "SC Certificate", "Income Certificate", "School Enrollment Proof", "Bank Account"],
+    "apply_link": "https://scholarships.gov.in",
+    "apply_steps": [
+      "Go to scholarships.gov.in and register",
+      "Select 'Pre-Matric Scholarship for SC Students'",
+      "Fill in your details and upload documents",
+      "Verify via OTP on mobile",
+      "Submit application and note registration number"
+    ],
+    "state": "central",
+    "tags": ["scholarship", "sc", "education", "students"]
+  },
+  {
+    "id": "scholarship_st",
+    "name": "Post-Matric Scholarship for ST Students",
+    "category": "Education",
+    "ministry": "Ministry of Tribal Affairs",
+    "description": "Financial aid for ST students in Class 11 and above.",
+    "benefits": "Course fees, maintenance allowance, and other charges covered fully.",
+    "eligibility": {
+      "caste": ["st"],
+      "max_income": 250000,
+      "education": ["college", "school", "professional"]
+    },
+    "documents": ["Aadhaar Card", "ST Certificate", "Income Certificate", "Admission Letter", "Previous Marksheet"],
+    "apply_link": "https://scholarships.gov.in",
+    "apply_steps": [
+      "Register on scholarships.gov.in",
+      "Select Post-Matric Scholarship for ST students",
+      "Enter academic and personal details",
+      "Upload all required documents",
+      "Submit and track status on portal"
+    ],
+    "state": "central",
+    "tags": ["scholarship", "st", "education", "tribal"]
+  },
+  {
+    "id": "jan_dhan",
+    "name": "Pradhan Mantri Jan Dhan Yojana (PMJDY)",
+    "category": "Banking",
+    "ministry": "Ministry of Finance",
+    "description": "Zero-balance savings account with insurance and overdraft facility.",
+    "benefits": "Zero-balance account, RuPay debit card, ₹2 lakh accident insurance, ₹30,000 life cover, ₹10,000 overdraft.",
+    "eligibility": {
+      "min_age": 10,
+      "no_bank_account": true
+    },
+    "documents": ["Aadhaar Card OR Voter ID OR Passport", "Passport Size Photo"],
+    "apply_link": "https://pmjdy.gov.in",
+    "apply_steps": [
+      "Visit any bank branch or Business Correspondent (BC) outlet",
+      "Fill the Jan Dhan account opening form",
+      "Submit one valid photo ID (Aadhaar preferred)",
+      "Account is opened on the spot (zero balance)",
+      "RuPay card is dispatched to your address within 10 days"
+    ],
+    "state": "central",
+    "tags": ["banking", "account", "insurance"]
+  },
+  {
+    "id": "mudra_loan",
+    "name": "Pradhan Mantri MUDRA Yojana",
+    "category": "Livelihood",
+    "ministry": "Ministry of Finance",
+    "description": "Collateral-free loans for micro and small businesses.",
+    "benefits": "Loans from ₹50,000 to ₹10 lakh under Shishu, Kishor, and Tarun categories.",
+    "eligibility": {
+      "occupation": ["self_employed", "business_owner", "artisan"],
+      "max_income": 1000000
+    },
+    "documents": ["Aadhaar Card", "PAN Card", "Business Plan or Quote", "Address Proof of Business", "2 Passport Photos"],
+    "apply_link": "https://www.mudra.org.in",
+    "apply_steps": [
+      "Prepare a brief business plan describing your activity",
+      "Visit nearest PSU bank, MFI, or NBFC offering MUDRA loans",
+      "Fill the MUDRA loan application form",
+      "Submit documents — Aadhaar, PAN, business address proof",
+      "Loan is sanctioned within 7-30 days after verification"
+    ],
+    "state": "central",
+    "tags": ["loan", "business", "self-employed", "livelihood"]
+  },
+  {
+    "id": "suraksha_bima",
+    "name": "Pradhan Mantri Suraksha Bima Yojana (PMSBY)",
+    "category": "Insurance",
+    "ministry": "Ministry of Finance",
+    "description": "Accident insurance cover for ₹2 lakh at just ₹20/year premium.",
+    "benefits": "₹2 lakh on accidental death or permanent total disability, ₹1 lakh on partial disability.",
+    "eligibility": {
+      "min_age": 18,
+      "max_age": 70,
+      "bank_account": true
+    },
+    "documents": ["Aadhaar Card", "Savings Bank Account Number", "Mobile Number linked to bank"],
+    "apply_link": "https://jansuraksha.gov.in",
+    "apply_steps": [
+      "Visit your bank branch or apply via net banking / UPI app",
+      "Fill the PMSBY enrollment form",
+      "Give consent for auto-debit of ₹20 per year",
+      "Policy number is issued immediately",
+      "Renews automatically every June 1"
+    ],
+    "state": "central",
+    "tags": ["insurance", "accident", "affordable"]
+  },
+  {
+    "id": "jeevan_jyoti",
+    "name": "Pradhan Mantri Jeevan Jyoti Bima Yojana (PMJJBY)",
+    "category": "Insurance",
+    "ministry": "Ministry of Finance",
+    "description": "Life insurance of ₹2 lakh at ₹436/year for any reason of death.",
+    "benefits": "₹2 lakh life insurance coverage. Renewable annually.",
+    "eligibility": {
+      "min_age": 18,
+      "max_age": 50,
+      "bank_account": true
+    },
+    "documents": ["Aadhaar Card", "Bank Account", "Mobile Number"],
+    "apply_link": "https://jansuraksha.gov.in",
+    "apply_steps": [
+      "Contact your bank or apply online via net banking",
+      "Fill enrollment form for PMJJBY",
+      "Auto-debit of ₹436 authorized annually",
+      "Policy issued immediately",
+      "In case of death, nominee claims ₹2 lakh at bank branch"
+    ],
+    "state": "central",
+    "tags": ["insurance", "life", "affordable"]
+  },
+  {
+    "id": "sukanya_samriddhi",
+    "name": "Sukanya Samriddhi Yojana (SSY)",
+    "category": "Women & Child",
+    "ministry": "Ministry of Finance",
+    "description": "Savings scheme for the girl child with high interest and tax benefits.",
+    "benefits": "8.2% interest rate (2024). Tax-free maturity amount. Matures when girl turns 21.",
+    "eligibility": {
+      "gender": "female",
+      "max_age": 10,
+      "guardian": true
+    },
+    "documents": ["Girl Child's Birth Certificate", "Guardian's Aadhaar Card", "Address Proof", "Passport Size Photos"],
+    "apply_link": "https://www.indiapost.gov.in",
+    "apply_steps": [
+      "Visit nearest Post Office or authorized bank branch",
+      "Fill SSY account opening form",
+      "Minimum deposit ₹250 to open account",
+      "Deposit up to ₹1.5 lakh per year",
+      "Account matures when girl turns 21 or on marriage after 18"
+    ],
+    "state": "central",
+    "tags": ["girl child", "savings", "education", "women"]
+  },
+  {
+    "id": "beti_bachao",
+    "name": "Beti Bachao Beti Padhao (BBBP)",
+    "category": "Women & Child",
+    "ministry": "Ministry of Women and Child Development",
+    "description": "Initiative to address declining child sex ratio and promote girl education.",
+    "benefits": "Free education, scholarships, and awareness programs for girls.",
+    "eligibility": {
+      "gender": "female",
+      "max_age": 18
+    },
+    "documents": ["Aadhaar Card", "Birth Certificate", "School Enrollment Proof"],
+    "apply_link": "https://wcd.nic.in",
+    "apply_steps": [
+      "Contact local Anganwadi center or District Education Office",
+      "Register daughter for BBBP benefits",
+      "Avail free school enrollment and scholarship benefits",
+      "Link with Sukanya Samriddhi Yojana for maximum benefit"
+    ],
+    "state": "central",
+    "tags": ["girl child", "education", "women"]
+  },
+  {
+    "id": "mssc_mahila_samman",
+    "name": "Mahila Samman Savings Certificate",
+    "category": "Women & Child",
+    "ministry": "Ministry of Finance",
+    "description": "Special savings scheme for women offering 7.5% interest.",
+    "benefits": "7.5% interest per annum, partial withdrawal allowed after 1 year.",
+    "eligibility": {
+      "gender": "female",
+      "min_age": 18
+    },
+    "documents": ["Aadhaar Card", "PAN Card", "Passport Photo", "Bank Account"],
+    "apply_link": "https://www.indiapost.gov.in",
+    "apply_steps": [
+      "Visit Post Office or bank offering this scheme",
+      "Fill account opening form",
+      "Invest from ₹1,000 to ₹2 lakh",
+      "Certificate matures in 2 years with high interest",
+      "Partial withdrawal of 40% allowed after 1 year"
+    ],
+    "state": "central",
+    "tags": ["women", "savings", "investment"]
+  },
+  {
+    "id": "atal_pension",
+    "name": "Atal Pension Yojana (APY)",
+    "category": "Social Security",
+    "ministry": "Ministry of Finance",
+    "description": "Pension scheme for unorganized sector workers.",
+    "benefits": "Guaranteed pension of ₹1,000–₹5,000/month after age 60.",
+    "eligibility": {
+      "min_age": 18,
+      "max_age": 40,
+      "occupation": ["daily_wage", "farmer", "self_employed", "artisan"],
+      "bank_account": true
+    },
+    "documents": ["Aadhaar Card", "Savings Bank Account", "Mobile Number"],
+    "apply_link": "https://npscra.nsdl.co.in",
+    "apply_steps": [
+      "Visit your savings bank branch",
+      "Fill APY registration form",
+      "Choose monthly contribution based on pension amount desired",
+      "Auto-debit set up from your account",
+      "PRAN (Permanent Retirement Account Number) issued"
+    ],
+    "state": "central",
+    "tags": ["pension", "retirement", "unorganized sector"]
+  },
+  {
+    "id": "nfbs",
+    "name": "National Family Benefit Scheme (NFBS)",
+    "category": "Social Security",
+    "ministry": "Ministry of Rural Development",
+    "description": "One-time lump sum assistance to BPL families on death of breadwinner.",
+    "benefits": "₹20,000 one-time assistance to family on death of breadwinner (18–64 years).",
+    "eligibility": {
+      "bpl": true,
+      "max_income": 50000
+    },
+    "documents": ["BPL Card", "Death Certificate of Breadwinner", "Aadhaar of Claimant", "Bank Account", "Income Certificate"],
+    "apply_link": "https://nsap.nic.in",
+    "apply_steps": [
+      "Contact local Block Development Office (BDO) or Gram Panchayat",
+      "Fill the NFBS application form within 3 months of death",
+      "Submit death certificate and BPL card",
+      "Collector/DC approves the claim",
+      "Amount credited to account within 30 days"
+    ],
+    "state": "central",
+    "tags": ["bpl", "death benefit", "family support"]
+  },
+  {
+    "id": "msme_credit_guarantee",
+    "name": "CGTMSE - Credit Guarantee Scheme for MSMEs",
+    "category": "Livelihood",
+    "ministry": "Ministry of MSME",
+    "description": "Collateral-free credit up to ₹2 crore for micro and small enterprises.",
+    "benefits": "Loans up to ₹2 crore without collateral for new and existing MSMEs.",
+    "eligibility": {
+      "occupation": ["business_owner", "self_employed"],
+      "business_type": "msme"
+    },
+    "documents": ["Aadhaar Card", "PAN Card", "MSME Registration (Udyam)", "Business Plan", "Bank Statements"],
+    "apply_link": "https://www.cgtmse.in",
+    "apply_steps": [
+      "Register your business on Udyam Portal (udyamregistration.gov.in)",
+      "Approach a member lending institution (PSU bank, SIDBI, etc.)",
+      "Submit loan application with business plan",
+      "Bank applies for CGTMSE guarantee cover",
+      "Loan sanctioned without any collateral required"
+    ],
+    "state": "central",
+    "tags": ["msme", "loan", "business", "collateral-free"]
+  },
+  {
+    "id": "mgnregs",
+    "name": "Mahatma Gandhi NREGS (MGNREGA)",
+    "category": "Employment",
+    "ministry": "Ministry of Rural Development",
+    "description": "Guarantees 100 days of unskilled wage employment per year to rural households.",
+    "benefits": "100 days of employment per year at ₹220–₹350/day (varies by state). Maharashtra: ₹273/day.",
+    "eligibility": {
+      "area_type": ["rural"],
+      "occupation": ["daily_wage", "farmer", "unemployed"],
+      "min_age": 18
+    },
+    "documents": ["Aadhaar Card", "BPL/Ration Card", "Bank/Post Office Account", "Residential Proof"],
+    "apply_link": "https://nrega.nic.in",
+    "apply_steps": [
+      "Visit nearest Gram Panchayat office",
+      "Fill the MGNREGA Job Card application",
+      "Job Card issued within 15 days",
+      "Demand work in writing at Gram Panchayat",
+      "Work must be provided within 15 days of demand"
+    ],
+    "state": "central",
+    "tags": ["employment", "rural", "daily wage", "job guarantee"]
+  },
+  {
+    "id": "maha_mahatma_phule",
+    "name": "Mahatma Phule Jan Arogya Yojana (Maharashtra)",
+    "category": "Health",
+    "ministry": "Government of Maharashtra",
+    "description": "Maharashtra state health scheme covering ₹1.5 lakh per year for 1,000+ procedures.",
+    "benefits": "Cashless treatment up to ₹1.5 lakh per family at 500+ hospitals in Maharashtra.",
+    "eligibility": {
+      "state": "maharashtra",
+      "max_income": 100000,
+      "ration_card": ["yellow", "orange", "white"]
+    },
+    "documents": ["Aadhaar Card", "Yellow/Orange/White Ration Card", "Income Certificate", "Domicile Certificate (Maharashtra)"],
+    "apply_link": "https://www.jeevandayee.gov.in",
+    "apply_steps": [
+      "Check eligibility — hold yellow, orange, or white ration card",
+      "Visit empaneled hospital in Maharashtra",
+      "Show Aadhaar and ration card at Aarogya Mitra desk",
+      "Pre-authorization is taken by hospital from MPJAY",
+      "Treatment is fully cashless up to ₹1.5 lakh"
+    ],
+    "state": "maharashtra",
+    "tags": ["health", "maharashtra", "hospital", "cashless", "state scheme"]
+  },
+  {
+    "id": "maha_ladki_bahin",
+    "name": "Mukhyamantri Ladki Bahin Yojana (Maharashtra)",
+    "category": "Women & Child",
+    "ministry": "Government of Maharashtra",
+    "description": "Monthly financial aid of ₹1,500 to eligible women in Maharashtra.",
+    "benefits": "₹1,500 per month directly credited to women's bank account.",
+    "eligibility": {
+      "gender": "female",
+      "state": "maharashtra",
+      "min_age": 21,
+      "max_age": 60,
+      "max_income": 250000
+    },
+    "documents": ["Aadhaar Card", "Income Certificate", "Maharashtra Domicile Certificate", "Bank Account", "Ration Card"],
+    "apply_link": "https://ladakibahin.maharashtra.gov.in",
+    "apply_steps": [
+      "Visit nearest Anganwadi, Seva Kendra, or apply online",
+      "Fill the application form with personal details",
+      "Submit Aadhaar, income certificate, and domicile proof",
+      "Application verified by local authorities",
+      "₹1,500 credited monthly after approval"
+    ],
+    "state": "maharashtra",
+    "tags": ["women", "maharashtra", "monthly allowance", "state scheme"]
+  },
+  {
+    "id": "maha_sheli_mendipalan",
+    "name": "Birsa Munda Krishi Kranti Yojana (Maharashtra)",
+    "category": "Agriculture",
+    "ministry": "Government of Maharashtra",
+    "description": "Agricultural support and irrigation assistance for tribal farmers in Maharashtra.",
+    "benefits": "Drip/sprinkler irrigation systems, farm ponds, and equipment subsidy up to ₹1 lakh.",
+    "eligibility": {
+      "caste": ["st"],
+      "state": "maharashtra",
+      "occupation": ["farmer"],
+      "max_income": 200000
+    },
+    "documents": ["Aadhaar Card", "ST Certificate", "7/12 Land Record", "Bank Account", "Domicile Certificate"],
+    "apply_link": "https://mahadbt.maharashtra.gov.in",
+    "apply_steps": [
+      "Register on MahaDBT portal (mahadbt.maharashtra.gov.in)",
+      "Login and select 'Agriculture Department' schemes",
+      "Choose Birsa Munda Krishi Kranti Yojana",
+      "Fill form and upload required documents",
+      "Application reviewed by district agriculture office"
+    ],
+    "state": "maharashtra",
+    "tags": ["agriculture", "tribal", "maharashtra", "irrigation"]
+  },
+  {
+    "id": "pm_vishwakarma",
+    "name": "PM Vishwakarma Yojana",
+    "category": "Livelihood",
+    "ministry": "Ministry of MSME",
+    "description": "Support for traditional artisans and craftspeople with training and collateral-free loans.",
+    "benefits": "₹15,000 toolkit grant, ₹1–2 lakh loan at 5% interest, free skill training, digital payment incentive.",
+    "eligibility": {
+      "occupation": ["artisan", "craftsperson"],
+      "max_income": 300000
+    },
+    "documents": ["Aadhaar Card", "Ration Card", "Bank Account", "Mobile Number", "Caste Certificate (if applicable)"],
+    "apply_link": "https://pmvishwakarma.gov.in",
+    "apply_steps": [
+      "Register at nearest CSC or on pmvishwakarma.gov.in",
+      "Select your craft/trade from the 18 listed categories",
+      "Biometric verification at CSC",
+      "Training and certification completed",
+      "Toolkit grant and loan disbursed after certification"
+    ],
+    "state": "central",
+    "tags": ["artisan", "craftsman", "loan", "training", "toolkit"]
+  },
+  {
+    "id": "stand_up_india",
+    "name": "Stand-Up India Scheme",
+    "category": "Livelihood",
+    "ministry": "Ministry of Finance",
+    "description": "Bank loans between ₹10 lakh–₹1 crore for SC/ST and women entrepreneurs.",
+    "benefits": "Composite loan from ₹10 lakh to ₹1 crore for greenfield enterprise. 7-year repayment.",
+    "eligibility": {
+      "caste": ["sc", "st"],
+      "gender": "female",
+      "occupation": ["self_employed", "business_owner"],
+      "min_age": 18
+    },
+    "documents": ["Aadhaar Card", "PAN Card", "SC/ST Certificate", "Business Plan", "Bank Account", "Address Proof"],
+    "apply_link": "https://www.standupmitra.in",
+    "apply_steps": [
+      "Check eligibility on standupmitra.in portal",
+      "Register and create your profile",
+      "Get connected to nearest bank branch",
+      "Submit business plan and required documents",
+      "Loan sanctioned within 30 days"
+    ],
+    "state": "central",
+    "tags": ["sc", "st", "women", "loan", "entrepreneur"]
+  },
+  {
+    "id": "maha_annasaheb_patil",
+    "name": "Annasaheb Patil Loan Guarantee Scheme (Maharashtra)",
+    "category": "Livelihood",
+    "ministry": "Government of Maharashtra",
+    "description": "Loan guarantee for Marathas and open category youth for business.",
+    "benefits": "Loan guarantee for loans from ₹50,000 to ₹15 lakh for business purposes.",
+    "eligibility": {
+      "state": "maharashtra",
+      "max_income": 800000,
+      "min_age": 18,
+      "max_age": 45
+    },
+    "documents": ["Aadhaar Card", "Caste Certificate (if applicable)", "Income Certificate", "Domicile Certificate", "Bank Account"],
+    "apply_link": "https://mahavikas.gov.in",
+    "apply_steps": [
+      "Register on MahaVikas portal",
+      "Select Annasaheb Patil Loan scheme",
+      "Fill application with business details",
+      "Submit required documents online",
+      "Loan processed through partner banks"
+    ],
+    "state": "maharashtra",
+    "tags": ["loan", "maharashtra", "business", "maratha"]
+  }
+]

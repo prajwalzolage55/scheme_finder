@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+{% block title %}AI Assistant — SchemeSaathi{% endblock %}
+
+{% block content %}
+<div class="chat-container">
+
+  <!-- Chat Header -->
+  <div class="chat-header">
+    <div class="chat-avatar">🤖</div>
+    <div>
+      <div style="font-weight:700;font-size:1rem">SchemeSaathi AI — Powered by Groq</div>
+      <div style="font-size:0.75rem;color:rgba(255,255,255,0.55);margin-top:2px">
+        Ask in Hindi, Marathi, or English · Available 24/7
+      </div>
+    </div>
+    <div style="margin-left:auto;display:flex;align-items:center;gap:8px">
+      <div style="width:8px;height:8px;background:#27AE60;border-radius:50%"></div>
+      <span style="font-size:0.78rem;color:rgba(255,255,255,0.6)">Online</span>
+    </div>
+  </div>
+
+  <!-- Suggested Questions -->
+  <div id="suggestions" style="padding:1rem 1.5rem;background:white;border-bottom:1px solid var(--gray-lt);display:flex;gap:8px;flex-wrap:wrap">
+    <span style="font-size:0.78rem;color:var(--gray-md);align-self:center;flex-shrink:0">Try asking:</span>
+    <button class="suggestion-chip" onclick="useSuggestion(this)">Am I eligible for PMAY?</button>
+    <button class="suggestion-chip" onclick="useSuggestion(this)">MGNREGA के लिए क्या दस्तावेज चाहिए?</button>
+    <button class="suggestion-chip" onclick="useSuggestion(this)">Ayushman Bharat बद्दल मला सांगा</button>
+    <button class="suggestion-chip" onclick="useSuggestion(this)">What schemes are for farmers?</button>
+    <button class="suggestion-chip" onclick="useSuggestion(this)">How to apply for MUDRA loan?</button>
+  </div>
+
+  <!-- Messages -->
+  <div class="chat-messages" id="chat-messages">
+    <!-- Welcome Message -->
+    <div style="display:flex;gap:10px;align-items:flex-start">
+      <div style="width:36px;height:36px;background:linear-gradient(135deg,var(--saffron),#FF3B00);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0">🤖</div>
+      <div>
+        <div class="msg-bubble msg-bot">
+          <strong>नमस्ते! / Namaste! / Hello!</strong> 👋<br><br>
+          I'm your SchemeSaathi AI assistant. I can help you with:<br>
+          • 🎯 Checking eligibility for any government scheme<br>
+          • 🧾 Documents needed for applications<br>
+          • 🧭 How and where to apply<br>
+          • 💬 Answers in Hindi, Marathi, or English<br><br>
+          {% if user_data %}
+          <div style="background:rgba(255,107,53,0.1);border-radius:8px;padding:8px 12px;font-size:0.85rem;margin-top:4px">
+            📋 I can see your profile — I'll give personalised answers based on your income, location, and other details!
+          </div>
+          {% else %}
+          <div style="background:rgba(255,107,53,0.1);border-radius:8px;padding:8px 12px;font-size:0.85rem;margin-top:4px">
+            💡 Tip: <a href="/form" style="color:var(--saffron);font-weight:600">Fill your profile</a> first for personalized scheme suggestions!
+          </div>
+          {% endif %}
+        </div>
+        <div style="font-size:0.72rem;color:var(--gray-md);margin-top:4px;padding-left:4px">SchemeSaathi AI · Just now</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Input Area -->
+  <div class="chat-input-area">
+    <button id="voice-btn" title="Voice Input (English/Hindi)">🎤</button>
+    <textarea class="chat-input" id="chat-input" placeholder="Type your question here... / यहाँ लिखें... / इथे टाइप करा..."
+              rows="1" onkeydown="handleKey(event)" oninput="autoResize(this)"></textarea>
+    <button class="chat-send-btn" onclick="sendMessage()" id="send-btn" title="Send">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="22" y1="2" x2="11" y2="13"></line>
+        <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+      </svg>
+    </button>
+  </div>
+
+</div>
+
+<style>
+.suggestion-chip {
+  background: var(--saffron-bg);
+  color: var(--saffron);
+  border: 1px solid rgba(255,107,53,0.25);
+  border-radius: 100px;
+  padding: 5px 12px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  font-family: var(--font-main);
+}
+.suggestion-chip:hover { background: var(--saffron); color: white; }
+</style>
+
+<script src="{{ url_for('static', filename='js/chatbot.js') }}"></script>
+<script src="{{ url_for('static', filename='js/voice.js') }}"></script>
+{% endblock %}

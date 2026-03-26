@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+{% block title %}How to Apply — {{ scheme.name }}{% endblock %}
+
+{% block content %}
+<div class="page-container-sm" style="padding-top:2rem;padding-bottom:3rem">
+
+  <!-- Back -->
+  <a href="{{ url_for('schemes.scheme_detail', scheme_id=scheme.id) }}" style="display:inline-flex;align-items:center;gap:6px;color:var(--gray-md);font-size:0.88rem;margin-bottom:1.5rem;font-weight:600">
+    ← Back to Scheme Details
+  </a>
+
+  <!-- Header -->
+  <div style="margin-bottom:2rem">
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:0.75rem">
+      <div style="width:52px;height:52px;background:var(--navy);border-radius:var(--radius-md);display:flex;align-items:center;justify-content:center;font-size:1.6rem">🧭</div>
+      <div>
+        <h1 style="font-size:1.4rem;font-weight:800">Step-by-Step Apply Guide</h1>
+        <p style="color:var(--gray-md);font-size:0.85rem;margin-top:2px">{{ scheme.name }}</p>
+      </div>
+    </div>
+    <div style="background:var(--saffron-bg);border-left:4px solid var(--saffron);border-radius:0 var(--radius-sm) var(--radius-sm) 0;padding:12px 16px;font-size:0.85rem;color:#8B3A00">
+      📌 Follow each step in order. If you get stuck, use the AI chatbot at the bottom for help.
+    </div>
+  </div>
+
+  <!-- Steps -->
+  <div class="card" style="margin-bottom:1.5rem">
+    <div class="card-body">
+      <ul class="step-list" id="step-list">
+        {% for step in scheme.apply_steps %}
+        <li class="step-item" id="step-{{ loop.index }}" onclick="markStep({{ loop.index }})">
+          <div class="step-num" id="step-num-{{ loop.index }}">{{ loop.index }}</div>
+          <div class="step-content">
+            <div class="step-title" id="step-title-{{ loop.index }}">Step {{ loop.index }}</div>
+            <p style="font-size:0.88rem;color:var(--gray-dk);line-height:1.6">{{ step }}</p>
+          </div>
+          <div id="step-check-{{ loop.index }}" style="font-size:1.3rem;flex-shrink:0;opacity:0;transition:0.2s">✅</div>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+
+  <!-- Official Link -->
+  <div style="background:linear-gradient(135deg,var(--navy),var(--navy-lt));border-radius:var(--radius-lg);padding:1.5rem;text-align:center;margin-bottom:1.5rem;color:white">
+    <div style="font-size:1.5rem;margin-bottom:6px">🌐</div>
+    <h3 style="font-weight:700;font-size:1rem;margin-bottom:4px">Official Government Portal</h3>
+    <p style="font-size:0.82rem;color:rgba(255,255,255,0.6);margin-bottom:1rem">Click to apply directly on the official website</p>
+    <a href="{{ scheme.apply_link }}" target="_blank" rel="noopener" class="btn btn-primary">
+      Apply on {{ scheme.apply_link | replace('https://', '') | replace('http://', '') | truncate(35) }} ↗
+    </a>
+  </div>
+
+  <!-- Help Resources -->
+  <div class="card" style="margin-bottom:1.5rem">
+    <div class="card-body">
+      <h3 style="font-size:1rem;font-weight:700;margin-bottom:1rem">🆘 Need Offline Help?</h3>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+        <div style="background:var(--off-white);border-radius:var(--radius-sm);padding:1rem;border:1px solid var(--gray-lt)">
+          <div style="font-size:1.3rem;margin-bottom:6px">🏢</div>
+          <div style="font-weight:600;font-size:0.9rem;margin-bottom:4px">CSC Centre</div>
+          <p style="font-size:0.78rem;color:var(--gray-dk)">Common Service Centres help fill forms for free. Find one at locator.csccloud.in</p>
+        </div>
+        <div style="background:var(--off-white);border-radius:var(--radius-sm);padding:1rem;border:1px solid var(--gray-lt)">
+          <div style="font-size:1.3rem;margin-bottom:6px">📞</div>
+          <div style="font-weight:600;font-size:0.9rem;margin-bottom:4px">Helpline</div>
+          <p style="font-size:0.78rem;color:var(--gray-dk)">Call 1800-11-1555 (toll free) for scheme-related help from government helpline</p>
+        </div>
+        <div style="background:var(--off-white);border-radius:var(--radius-sm);padding:1rem;border:1px solid var(--gray-lt)">
+          <div style="font-size:1.3rem;margin-bottom:6px">🏛️</div>
+          <div style="font-weight:600;font-size:0.9rem;margin-bottom:4px">Gram Panchayat</div>
+          <p style="font-size:0.78rem;color:var(--gray-dk)">For rural schemes, visit your local Gram Panchayat office for assistance</p>
+        </div>
+        <div style="background:var(--off-white);border-radius:var(--radius-sm);padding:1rem;border:1px solid var(--gray-lt)">
+          <div style="font-size:1.3rem;margin-bottom:6px">📱</div>
+          <div style="font-weight:600;font-size:0.9rem;margin-bottom:4px">Umang App</div>
+          <p style="font-size:0.78rem;color:var(--gray-dk)">Download the UMANG app to access 2000+ government services on mobile</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Buttons -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+    <a href="{{ url_for('schemes.checklist', scheme_id=scheme.id) }}" class="btn btn-secondary" style="justify-content:center">
+      🧾 Document List
+    </a>
+    <a href="{{ url_for('chatbot.chatbot') }}" class="btn btn-primary" style="justify-content:center">
+      🤖 Ask AI Chatbot
+    </a>
+  </div>
+
+</div>
+
+<script>
+function markStep(n) {
+  const item  = document.getElementById(`step-${n}`);
+  const check = document.getElementById(`step-check-${n}`);
+  const num   = document.getElementById(`step-num-${n}`);
+  const done  = item.dataset.done === 'true';
+
+  if (!done) {
+    item.style.opacity = '0.55';
+    check.style.opacity = '1';
+    num.style.background = 'var(--green)';
+    item.dataset.done = 'true';
+  } else {
+    item.style.opacity = '1';
+    check.style.opacity = '0';
+    num.style.background = 'var(--saffron)';
+    item.dataset.done = 'false';
+  }
+}
+</script>
+{% endblock %}

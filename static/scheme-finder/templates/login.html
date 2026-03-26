@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+{% block title %}{% if mode == 'register' %}Register{% else %}Login{% endif %} — SchemeSaathi{% endblock %}
+
+{% block content %}
+<div style="min-height:calc(100vh - 140px);display:flex;align-items:center;justify-content:center;padding:2rem">
+  <div style="width:100%;max-width:440px">
+
+    <!-- Logo -->
+    <div style="text-align:center;margin-bottom:2rem">
+      <div style="width:64px;height:64px;background:linear-gradient(135deg,var(--saffron),#FF3B00);border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:2rem;margin:0 auto 1rem">🇮🇳</div>
+      <h1 style="font-size:1.6rem;font-weight:800;color:var(--navy)">SchemeSaathi</h1>
+      <p style="color:var(--gray-md);font-size:0.88rem;margin-top:4px">
+        {% if mode == 'register' %}
+          Create your free account and find government schemes in 60 seconds
+        {% else %}
+          Welcome back! Login to check your scheme eligibility
+        {% endif %}
+      </p>
+    </div>
+
+    <!-- Tabs -->
+    <div style="display:flex;background:var(--gray-lt);border-radius:var(--radius-md);padding:4px;margin-bottom:1.5rem">
+      <a href="{{ url_for('auth.login') }}"
+         style="flex:1;text-align:center;padding:10px;border-radius:var(--radius-sm);font-weight:600;font-size:0.9rem;transition:var(--transition);
+         {% if mode != 'register' %}background:white;color:var(--navy);box-shadow:var(--shadow-sm);{% else %}color:var(--gray-md);{% endif %}">
+        Login
+      </a>
+      <a href="{{ url_for('auth.register') }}"
+         style="flex:1;text-align:center;padding:10px;border-radius:var(--radius-sm);font-weight:600;font-size:0.9rem;transition:var(--transition);
+         {% if mode == 'register' %}background:white;color:var(--navy);box-shadow:var(--shadow-sm);{% else %}color:var(--gray-md);{% endif %}">
+        Register
+      </a>
+    </div>
+
+    <!-- Card -->
+    <div class="card">
+      <div class="card-body">
+        {% if mode == 'register' %}
+        <!-- Register Form -->
+        <form method="POST" action="{{ url_for('auth.register') }}">
+          <div class="form-group">
+            <label class="form-label">Full Name</label>
+            <input type="text" name="name" class="form-control" placeholder="e.g. Ramesh Kumar" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Email Address</label>
+            <input type="email" name="email" class="form-control" placeholder="you@example.com" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Mobile Number</label>
+            <input type="tel" name="phone" class="form-control" placeholder="+91 9876543210" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Password</label>
+            <input type="password" name="password" class="form-control" placeholder="Create a strong password" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Confirm Password</label>
+            <input type="password" name="confirm_password" class="form-control" placeholder="Repeat password" required>
+          </div>
+          <button type="submit" class="btn btn-primary btn-full btn-lg" style="margin-top:0.5rem">
+            🚀 Create Account
+          </button>
+          <p style="text-align:center;font-size:0.8rem;color:var(--gray-md);margin-top:1rem">
+            By registering you agree to use this for informational purposes only.
+          </p>
+        </form>
+
+        {% else %}
+        <!-- Login Form -->
+        <form method="POST" action="{{ url_for('auth.login') }}">
+          <div class="form-group">
+            <label class="form-label">Email Address</label>
+            <input type="email" name="email" class="form-control" placeholder="you@example.com" required autofocus>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Password</label>
+            <input type="password" name="password" class="form-control" placeholder="Your password" required>
+          </div>
+          <button type="submit" class="btn btn-primary btn-full btn-lg" style="margin-top:0.5rem">
+            🔓 Login
+          </button>
+        </form>
+        <p style="text-align:center;font-size:0.88rem;color:var(--gray-md);margin-top:1.5rem">
+          Don't have an account? <a href="{{ url_for('auth.register') }}" style="color:var(--saffron);font-weight:600">Register Free</a>
+        </p>
+        {% endif %}
+      </div>
+    </div>
+
+    <!-- Trust badges -->
+    <div style="display:flex;justify-content:center;gap:1.5rem;margin-top:1.5rem;flex-wrap:wrap">
+      <div style="display:flex;align-items:center;gap:5px;font-size:0.78rem;color:var(--gray-md)">
+        🔒 Secure &amp; Private
+      </div>
+      <div style="display:flex;align-items:center;gap:5px;font-size:0.78rem;color:var(--gray-md)">
+        ✅ 100% Free
+      </div>
+      <div style="display:flex;align-items:center;gap:5px;font-size:0.78rem;color:var(--gray-md)">
+        🇮🇳 Made for India
+      </div>
+    </div>
+
+  </div>
+</div>
+{% endblock %}

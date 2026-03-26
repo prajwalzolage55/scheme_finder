@@ -1,0 +1,128 @@
+{% extends "base.html" %}
+{% block title %}About SchemeSaathi{% endblock %}
+
+{% block content %}
+<div class="page-container-sm" style="padding-top:2.5rem;padding-bottom:3rem">
+
+  <!-- Hero -->
+  <div style="text-align:center;margin-bottom:3rem">
+    <div style="width:72px;height:72px;background:linear-gradient(135deg,var(--saffron),#FF3B00);border-radius:20px;display:flex;align-items:center;justify-content:center;font-size:2.2rem;margin:0 auto 1rem">🇮🇳</div>
+    <h1 style="font-size:2rem;font-weight:800;margin-bottom:0.5rem">About SchemeSaathi</h1>
+    <p style="color:var(--gray-md);max-width:480px;margin:0 auto;font-size:0.95rem;line-height:1.6">
+      A free, AI-powered platform to help every Indian family discover and access government welfare schemes they're entitled to.
+    </p>
+  </div>
+
+  <!-- Mission Card -->
+  <div style="background:var(--navy);color:white;border-radius:var(--radius-xl);padding:2rem;margin-bottom:1.5rem">
+    <h2 style="font-size:1.2rem;font-weight:700;margin-bottom:1rem;display:flex;align-items:center;gap:8px">
+      🎯 Our Mission
+    </h2>
+    <p style="color:rgba(255,255,255,0.8);font-size:0.92rem;line-height:1.8">
+      Every year, <strong>crores of rupees</strong> in government welfare benefits go unclaimed because eligible families simply don't know about them or don't know how to apply. SchemeSaathi bridges this gap by making scheme discovery <strong>instant, intelligent, and accessible</strong> to everyone — in any language, on any device.
+    </p>
+  </div>
+
+  <!-- Features Grid -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem">
+    <div class="card"><div class="card-body" style="padding:1.25rem">
+      <div style="font-size:1.5rem;margin-bottom:8px">🎯</div>
+      <h3 style="font-size:0.95rem;font-weight:700;margin-bottom:4px">Smart Matching</h3>
+      <p style="font-size:0.82rem;color:var(--gray-dk)">AI engine matches you with schemes based on 8+ eligibility criteria</p>
+    </div></div>
+    <div class="card"><div class="card-body" style="padding:1.25rem">
+      <div style="font-size:1.5rem;margin-bottom:8px">🤖</div>
+      <h3 style="font-size:0.95rem;font-weight:700;margin-bottom:4px">Groq AI Chatbot</h3>
+      <p style="font-size:0.82rem;color:var(--gray-dk)">Fast LLM-powered assistant in Hindi, Marathi, and English</p>
+    </div></div>
+    <div class="card"><div class="card-body" style="padding:1.25rem">
+      <div style="font-size:1.5rem;margin-bottom:8px">🧾</div>
+      <h3 style="font-size:0.95rem;font-weight:700;margin-bottom:4px">Document Guide</h3>
+      <p style="font-size:0.82rem;color:var(--gray-dk)">Interactive checklist tells you exactly which documents to collect</p>
+    </div></div>
+    <div class="card"><div class="card-body" style="padding:1.25rem">
+      <div style="font-size:1.5rem;margin-bottom:8px">🗣️</div>
+      <h3 style="font-size:0.95rem;font-weight:700;margin-bottom:4px">Voice Input</h3>
+      <p style="font-size:0.82rem;color:var(--gray-dk)">Speak your questions — ideal for low-literacy users</p>
+    </div></div>
+  </div>
+
+  <!-- How to Use -->
+  <div class="card" style="margin-bottom:1.5rem">
+    <div class="card-body">
+      <h2 style="font-size:1.1rem;font-weight:700;margin-bottom:1.25rem">📖 How to Use SchemeSaathi</h2>
+      <ul class="step-list">
+        <li class="step-item">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <div class="step-title">Create a Free Account</div>
+            <p style="font-size:0.85rem;color:var(--gray-dk)">Register with your name, email, and phone number. Completely free — no charges ever.</p>
+          </div>
+        </li>
+        <li class="step-item">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <div class="step-title">Fill the Eligibility Form</div>
+            <p style="font-size:0.85rem;color:var(--gray-dk)">Enter income, age, gender, caste, location, and occupation. Takes about 60 seconds.</p>
+          </div>
+        </li>
+        <li class="step-item">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <div class="step-title">View Your Matched Schemes</div>
+            <p style="font-size:0.85rem;color:var(--gray-dk)">See all schemes you're eligible for with a match score, benefits, and documents needed.</p>
+          </div>
+        </li>
+        <li class="step-item">
+          <div class="step-num">4</div>
+          <div class="step-content">
+            <div class="step-title">Follow the Apply Guide</div>
+            <p style="font-size:0.85rem;color:var(--gray-dk)">Step-by-step instructions tell you exactly where to go and what to do to apply.</p>
+          </div>
+        </li>
+        <li class="step-item">
+          <div class="step-num">5</div>
+          <div class="step-content">
+            <div class="step-title">Use the AI Chatbot for Doubts</div>
+            <p style="font-size:0.85rem;color:var(--gray-dk)">Ask anything in Hindi, Marathi, or English. Get instant, personalised answers.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Disclaimer -->
+  <div style="background:var(--gold-lt);border-radius:var(--radius-md);padding:1.25rem;margin-bottom:1.5rem;border:1px solid rgba(245,166,35,0.25)">
+    <h3 style="font-size:0.95rem;font-weight:700;margin-bottom:8px;color:#7D5A10">⚠️ Important Disclaimer</h3>
+    <p style="font-size:0.82rem;color:#7D5A10;line-height:1.7">
+      SchemeSaathi provides informational guidance only. Eligibility shown is based on the information you provide and may not be 100% accurate. Always verify eligibility at the official government portal or nearest government office. We are not affiliated with the Government of India.
+    </p>
+  </div>
+
+  <!-- Tech Stack -->
+  <div class="card" style="margin-bottom:1.5rem">
+    <div class="card-body">
+      <h3 style="font-size:0.95rem;font-weight:700;margin-bottom:1rem">🛠️ Tech Stack</h3>
+      <div style="display:flex;flex-wrap:wrap;gap:8px">
+        <span class="tag-chip" style="background:var(--saffron-bg);color:var(--saffron)">Python / Flask</span>
+        <span class="tag-chip" style="background:var(--green-lt);color:var(--green)">MongoDB</span>
+        <span class="tag-chip" style="background:#EAF2FF;color:#2980B9">Groq LLM</span>
+        <span class="tag-chip" style="background:#FDF2F8;color:#C0392B">HTML / CSS / JS</span>
+        <span class="tag-chip" style="background:var(--gold-lt);color:#B7770A">Rule-Based Engine</span>
+        <span class="tag-chip" style="background:#F5EEF8;color:#8E44AD">Web Speech API</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Built by -->
+  <div style="background:var(--navy);color:white;border-radius:var(--radius-lg);padding:1.5rem;text-align:center">
+    <div style="font-size:1.8rem;margin-bottom:6px">💻</div>
+    <h3 style="font-weight:700;margin-bottom:4px">Built by Syntax Syndicate</h3>
+    <p style="font-size:0.83rem;color:rgba(255,255,255,0.6)">A project for Open Innovation — using technology for social good</p>
+    <div style="margin-top:1rem">
+      <a href="{{ url_for('schemes.form') }}" class="btn btn-primary btn-sm">🎯 Find Your Schemes</a>
+    </div>
+  </div>
+
+</div>
+{% endblock %}

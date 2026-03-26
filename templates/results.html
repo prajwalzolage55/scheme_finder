@@ -1,0 +1,170 @@
+{% extends "base.html" %}
+{% block title %}My Eligible Schemes — SchemeSaathi{% endblock %}
+
+{% block content %}
+<div class="page-container" style="padding-top:2rem;padding-bottom:3rem">
+
+  <!-- Header -->
+  <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-bottom:2rem">
+    <div>
+      <h1 style="font-size:1.6rem;font-weight:800">
+        🎯 Your Scheme Results
+      </h1>
+      <p style="color:var(--gray-md);margin-top:4px">
+        Based on your profile — showing best matches first
+      </p>
+    </div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap">
+      <a href="{{ url_for('schemes.form') }}" class="btn btn-secondary btn-sm">✏️ Edit Profile</a>
+      <a href="{{ url_for('chatbot.chatbot') }}" class="btn btn-primary btn-sm">🤖 Ask AI</a>
+    </div>
+  </div>
+
+  <!-- User Profile Summary -->
+  <div style="background:var(--navy);color:white;border-radius:var(--radius-lg);padding:1.5rem;margin-bottom:2rem;display:flex;flex-wrap:wrap;gap:1.5rem;align-items:center">
+    <div style="font-size:2rem">👤</div>
+    <div style="flex:1">
+      <div style="font-size:0.75rem;text-transform:uppercase;letter-spacing:0.08em;color:rgba(255,255,255,0.5);margin-bottom:6px">Your Profile</div>
+      <div style="display:flex;flex-wrap:wrap;gap:12px">
+        <span style="background:rgba(255,255,255,0.1);padding:4px 12px;border-radius:100px;font-size:0.82rem">
+          💰 ₹{{ "{:,}".format(user_data.annual_income|int) }}/yr
+        </span>
+        <span style="background:rgba(255,255,255,0.1);padding:4px 12px;border-radius:100px;font-size:0.82rem">
+          🎂 Age {{ user_data.age }}
+        </span>
+        <span style="background:rgba(255,255,255,0.1);padding:4px 12px;border-radius:100px;font-size:0.82rem">
+          👤 {{ user_data.gender|capitalize }}
+        </span>
+        <span style="background:rgba(255,255,255,0.1);padding:4px 12px;border-radius:100px;font-size:0.82rem">
+          🏛️ {{ user_data.caste|upper }}
+        </span>
+        <span style="background:rgba(255,255,255,0.1);padding:4px 12px;border-radius:100px;font-size:0.82rem">
+          📍 {{ user_data.state|replace('_',' ')|title }}
+        </span>
+        <span style="background:rgba(255,255,255,0.1);padding:4px 12px;border-radius:100px;font-size:0.82rem">
+          💼 {{ user_data.occupation|replace('_',' ')|title }}
+        </span>
+      </div>
+    </div>
+    <div style="text-align:center">
+      <div style="font-size:2.2rem;font-weight:800;color:var(--saffron)">{{ eligible|length }}</div>
+      <div style="font-size:0.7rem;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:0.06em">Eligible</div>
+    </div>
+  </div>
+
+  <!-- ✅ Eligible Schemes -->
+  {% if eligible %}
+  <div style="margin-bottom:0.75rem">
+    <h2 style="font-size:1.15rem;font-weight:700;color:var(--green);display:flex;align-items:center;gap:8px">
+      ✅ Schemes You're Likely Eligible For
+      <span style="background:var(--green-lt);color:var(--green);padding:2px 10px;border-radius:100px;font-size:0.75rem">{{ eligible|length }} found</span>
+    </h2>
+    <p style="font-size:0.85rem;color:var(--gray-md);margin-top:4px">Schemes with 50%+ match based on your profile</p>
+  </div>
+  <div class="results-grid" style="margin-bottom:2.5rem">
+    {% for scheme in eligible %}
+    <div class="scheme-card">
+      <div class="scheme-card-header">
+        <div style="flex:1">
+          <div style="margin-bottom:8px">
+            {% set cat = scheme.category|lower %}
+            <span class="cat-tag cat-{{ cat }}">
+              {% if cat == 'housing' %}🏠
+              {% elif cat == 'health' %}🏥
+              {% elif cat == 'education' %}📚
+              {% elif cat == 'employment' %}💼
+              {% elif cat == 'agriculture' %}🌾
+              {% elif cat == 'banking' %}🏦
+              {% elif cat == 'insurance' %}🛡️
+              {% elif cat == 'livelihood' %}💡
+              {% elif cat == 'women & child' %}👩
+              {% elif cat == 'energy' %}🔥
+              {% else %}🏛️
+              {% endif %}
+              {{ scheme.category }}
+            </span>
+          </div>
+          <h3 style="font-size:1rem;font-weight:700;line-height:1.4;color:var(--navy)">{{ scheme.name }}</h3>
+          <p style="font-size:0.78rem;color:var(--gray-md);margin-top:3px">{{ scheme.ministry }}</p>
+        </div>
+        <!-- Match Badge -->
+        <div class="match-badge {% if scheme.match_score >= 75 %}match-high{% elif scheme.match_score >= 50 %}match-medium{% else %}match-low{% endif %}">
+          <div class="pct">{{ scheme.match_score }}%</div>
+          <div class="lbl">Match</div>
+        </div>
+      </div>
+      <div class="scheme-card-body">
+        <div class="progress-bar-wrap">
+          <div class="progress-bar-fill {% if scheme.match_score >= 75 %}fill-green{% elif scheme.match_score >= 50 %}fill-gold{% else %}fill-gray{% endif %}"
+               style="width:{{ scheme.match_score }}%"></div>
+        </div>
+        <p style="font-size:0.85rem;color:var(--gray-dk);margin-top:0.75rem;line-height:1.5">{{ scheme.description }}</p>
+        <div style="background:var(--green-lt);border-radius:var(--radius-sm);padding:10px 14px;margin-top:0.75rem;font-size:0.83rem;color:#1D6A3C">
+          <strong>Benefit:</strong> {{ scheme.benefits }}
+        </div>
+        <div style="display:flex;gap:8px;margin-top:1rem;flex-wrap:wrap">
+          <a href="{{ url_for('schemes.scheme_detail', scheme_id=scheme.id) }}" class="btn btn-primary btn-sm">View Details</a>
+          <a href="{{ url_for('schemes.checklist', scheme_id=scheme.id) }}" class="btn btn-secondary btn-sm">📋 Documents</a>
+          <a href="{{ url_for('schemes.guide', scheme_id=scheme.id) }}" class="btn btn-secondary btn-sm">🧭 Apply Guide</a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  {% else %}
+  <div style="background:var(--red-lt);border-radius:var(--radius-lg);padding:2rem;text-align:center;margin-bottom:2rem">
+    <div style="font-size:2.5rem;margin-bottom:0.5rem">😔</div>
+    <h3 style="color:var(--red);font-weight:700">No direct matches found</h3>
+    <p style="color:var(--gray-dk);margin-top:8px;font-size:0.9rem">
+      Try updating your profile or exploring all schemes below. You may still be eligible for some.
+    </p>
+  </div>
+  {% endif %}
+
+  <!-- 🔍 Explore Other Schemes -->
+  {% if explore %}
+  <div style="margin-bottom:0.75rem">
+    <h2 style="font-size:1.15rem;font-weight:700;color:var(--gray-dk);display:flex;align-items:center;gap:8px">
+      🔍 Other Schemes to Explore
+      <span style="background:var(--gray-lt);color:var(--gray-dk);padding:2px 10px;border-radius:100px;font-size:0.75rem">{{ explore|length }}</span>
+    </h2>
+    <p style="font-size:0.85rem;color:var(--gray-md);margin-top:4px">You may not match now, but worth knowing about</p>
+  </div>
+  <div class="results-grid">
+    {% for scheme in explore %}
+    <div class="scheme-card" style="opacity:0.8">
+      <div class="scheme-card-header">
+        <div style="flex:1">
+          <h3 style="font-size:0.95rem;font-weight:700;line-height:1.4;color:var(--navy)">{{ scheme.name }}</h3>
+          <p style="font-size:0.78rem;color:var(--gray-md);margin-top:3px">{{ scheme.category }} · {{ scheme.ministry }}</p>
+        </div>
+        <div class="match-badge match-low" style="min-width:52px;height:52px">
+          <div class="pct" style="font-size:0.9rem">{{ scheme.match_score }}%</div>
+          <div class="lbl">Match</div>
+        </div>
+      </div>
+      <div class="scheme-card-body">
+        <p style="font-size:0.83rem;color:var(--gray-dk);line-height:1.5">{{ scheme.description }}</p>
+        <div style="margin-top:0.75rem">
+          <a href="{{ url_for('schemes.scheme_detail', scheme_id=scheme.id) }}" class="btn btn-secondary btn-sm">View Scheme</a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  <!-- AI Chat CTA -->
+  <div style="background:linear-gradient(135deg,var(--navy),var(--navy-lt));border-radius:var(--radius-lg);padding:2rem;text-align:center;margin-top:2.5rem;color:white">
+    <div style="font-size:2rem;margin-bottom:0.5rem">🤖</div>
+    <h3 style="font-weight:700;margin-bottom:6px">Still have questions?</h3>
+    <p style="color:rgba(255,255,255,0.7);font-size:0.9rem;margin-bottom:1.25rem">
+      Ask our AI assistant in Hindi, Marathi or English — "मैं PMAY के लिए योग्य हूँ?"
+    </p>
+    <a href="{{ url_for('chatbot.chatbot') }}" class="btn btn-primary">
+      🤖 Open AI Chatbot
+    </a>
+  </div>
+
+</div>
+{% endblock %}

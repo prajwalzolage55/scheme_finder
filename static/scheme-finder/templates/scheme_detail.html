@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+{% block title %}{{ scheme.name }} — SchemeSaathi{% endblock %}
+
+{% block content %}
+<div class="page-container-sm" style="padding-top:2rem;padding-bottom:3rem">
+
+  <!-- Back -->
+  <a href="javascript:history.back()" style="display:inline-flex;align-items:center;gap:6px;color:var(--gray-md);font-size:0.88rem;margin-bottom:1.5rem;font-weight:600">
+    ← Back to Results
+  </a>
+
+  <!-- Header Card -->
+  <div style="background:var(--navy);color:white;border-radius:var(--radius-xl);padding:2rem;margin-bottom:1.5rem;position:relative;overflow:hidden">
+    <div style="position:absolute;top:-40px;right:-40px;width:160px;height:160px;background:rgba(255,107,53,0.15);border-radius:50%;pointer-events:none"></div>
+    <div style="position:relative;z-index:1">
+      <div style="font-size:0.75rem;text-transform:uppercase;letter-spacing:0.08em;color:rgba(255,255,255,0.5);margin-bottom:8px">
+        {{ scheme.ministry }}
+      </div>
+      <h1 style="font-size:1.5rem;font-weight:800;line-height:1.3;margin-bottom:1rem">{{ scheme.name }}</h1>
+      <p style="color:rgba(255,255,255,0.75);font-size:0.9rem;line-height:1.6;margin-bottom:1.25rem">{{ scheme.description }}</p>
+      <!-- Match Score -->
+      <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap">
+        <div style="background:rgba(255,255,255,0.1);border-radius:var(--radius-md);padding:12px 20px;display:flex;align-items:center;gap:12px">
+          <div class="match-badge {% if score >= 75 %}match-high{% elif score >= 50 %}match-medium{% else %}match-low{% endif %}" style="width:52px;height:52px">
+            <div class="pct">{{ score }}%</div>
+            <div class="lbl">Match</div>
+          </div>
+          <div>
+            <div style="font-weight:700;font-size:1rem">Your Match Score</div>
+            <div style="font-size:0.78rem;color:rgba(255,255,255,0.6);margin-top:2px">
+              {% if score >= 75 %}Strong match — apply now!
+              {% elif score >= 50 %}Good match — check eligibility
+              {% else %}Partial match — verify criteria
+              {% endif %}
+            </div>
+          </div>
+        </div>
+        <span style="background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.8);padding:6px 16px;border-radius:100px;font-size:0.8rem;font-weight:600">
+          {{ scheme.category }}
+        </span>
+        {% if scheme.state and scheme.state != 'central' %}
+        <span style="background:rgba(255,107,53,0.2);color:var(--saffron-lt);padding:6px 16px;border-radius:100px;font-size:0.8rem;font-weight:600">
+          📍 {{ scheme.state|title }} State Scheme
+        </span>
+        {% else %}
+        <span style="background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.8);padding:6px 16px;border-radius:100px;font-size:0.8rem;font-weight:600">
+          🇮🇳 Central Government
+        </span>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  <!-- Benefits Card -->
+  <div class="card" style="margin-bottom:1.25rem">
+    <div class="card-body">
+      <h2 style="font-size:1.1rem;font-weight:700;margin-bottom:0.75rem;display:flex;align-items:center;gap:8px">
+        💰 Benefits
+      </h2>
+      <div style="background:var(--green-lt);border-left:4px solid var(--green);border-radius:0 var(--radius-sm) var(--radius-sm) 0;padding:14px 16px;font-size:0.92rem;color:#1D6A3C;font-weight:500">
+        {{ scheme.benefits }}
+      </div>
+    </div>
+  </div>
+
+  <!-- Eligibility Reasons -->
+  {% if reasons or blockers %}
+  <div class="card" style="margin-bottom:1.25rem">
+    <div class="card-body">
+      <h2 style="font-size:1.1rem;font-weight:700;margin-bottom:1rem">📊 Eligibility Analysis</h2>
+      {% for r in reasons %}
+      <div style="display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid var(--gray-lt)">
+        <span style="color:var(--green);font-size:1.1rem;flex-shrink:0">✅</span>
+        <span style="font-size:0.88rem;color:var(--gray-dk)">{{ r }}</span>
+      </div>
+      {% endfor %}
+      {% for b in blockers %}
+      <div style="display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid var(--gray-lt)">
+        <span style="color:var(--red);font-size:1.1rem;flex-shrink:0">❌</span>
+        <span style="font-size:0.88rem;color:var(--gray-dk)">{{ b }}</span>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  {% endif %}
+
+  <!-- Tags -->
+  {% if scheme.tags %}
+  <div style="margin-bottom:1.25rem;display:flex;flex-wrap:wrap;gap:8px">
+    {% for tag in scheme.tags %}
+    <span class="tag-chip">{{ tag }}</span>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  <!-- Action Buttons -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem">
+    <a href="{{ url_for('schemes.checklist', scheme_id=scheme.id) }}" class="btn btn-secondary" style="justify-content:center">
+      🧾 Document Checklist
+    </a>
+    <a href="{{ url_for('schemes.guide', scheme_id=scheme.id) }}" class="btn btn-primary" style="justify-content:center">
+      🧭 How to Apply
+    </a>
+  </div>
+
+  <!-- Official Apply Link -->
+  <div style="background:var(--saffron-bg);border-radius:var(--radius-md);padding:1rem 1.25rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap">
+    <div>
+      <div style="font-weight:700;font-size:0.9rem;color:var(--navy)">Official Government Portal</div>
+      <div style="font-size:0.8rem;color:var(--gray-md);margin-top:3px">Apply directly on the official website</div>
+    </div>
+    <a href="{{ scheme.apply_link }}" target="_blank" rel="noopener" class="btn btn-primary btn-sm">
+      Apply Now ↗
+    </a>
+  </div>
+
+</div>
+{% endblock %}

@@ -1,0 +1,133 @@
+{% extends "base.html" %}
+{% block title %}Document Checklist — {{ scheme.name }}{% endblock %}
+
+{% block content %}
+<div class="page-container-sm" style="padding-top:2rem;padding-bottom:3rem">
+
+  <!-- Back -->
+  <a href="{{ url_for('schemes.scheme_detail', scheme_id=scheme.id) }}" style="display:inline-flex;align-items:center;gap:6px;color:var(--gray-md);font-size:0.88rem;margin-bottom:1.5rem;font-weight:600">
+    ← Back to Scheme Details
+  </a>
+
+  <!-- Header -->
+  <div style="margin-bottom:2rem">
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:0.75rem">
+      <div style="width:52px;height:52px;background:var(--saffron-bg);border-radius:var(--radius-md);display:flex;align-items:center;justify-content:center;font-size:1.6rem">🧾</div>
+      <div>
+        <h1 style="font-size:1.4rem;font-weight:800">Document Checklist</h1>
+        <p style="color:var(--gray-md);font-size:0.85rem;margin-top:2px">{{ scheme.name }}</p>
+      </div>
+    </div>
+    <div style="background:var(--gold-lt);border-left:4px solid var(--gold);border-radius:0 var(--radius-sm) var(--radius-sm) 0;padding:12px 16px;font-size:0.85rem;color:#7D5A10">
+      ✅ Tick each document as you gather it. Bring <strong>original + one photocopy</strong> of each.
+    </div>
+  </div>
+
+  <!-- Progress Bar -->
+  <div class="card" style="margin-bottom:1.5rem">
+    <div class="card-body">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+        <span style="font-weight:600;font-size:0.9rem">Documents Collected</span>
+        <span id="progress-text" style="font-weight:700;color:var(--saffron);font-size:0.9rem">0 / {{ scheme.documents|length }}</span>
+      </div>
+      <div class="progress-bar-wrap" style="height:10px">
+        <div class="progress-bar-fill fill-green" id="doc-progress" style="width:0%"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Document List -->
+  <div id="doc-list">
+    {% for doc in scheme.documents %}
+    <div class="doc-item" onclick="toggleDoc(this, {{ loop.index0 }})">
+      <div class="doc-checkbox"></div>
+      <div style="flex:1">
+        <div style="font-weight:600;color:var(--navy);font-size:0.95rem">{{ doc }}</div>
+        <div style="font-size:0.78rem;color:var(--gray-md);margin-top:3px">
+          {% if 'aadhaar' in doc.lower() %}
+            Get from: UIDAI website (uidai.gov.in) or Aadhaar Enrolment Centre
+          {% elif 'income' in doc.lower() %}
+            Get from: Tahsildar / Revenue Department office in your Tehsil
+          {% elif 'caste' in doc.lower() %}
+            Get from: Tahsildar / District Caste Certificate Office
+          {% elif 'ration' in doc.lower() %}
+            Get from: District Food & Supplies Office or your local Ration Shop
+          {% elif 'bank' in doc.lower() %}
+            Get from: Your bank branch — Passbook front page or Account Details letter
+          {% elif 'pan' in doc.lower() %}
+            Get from: NSDL portal (onlineservices.nsdl.com) or UTI ITSL portal
+          {% elif 'birth' in doc.lower() %}
+            Get from: Municipal Corporation or Gram Panchayat office
+          {% elif 'land' in doc.lower() or '7/12' in doc.lower() %}
+            Get from: Mahabhumi portal (mahabhumi.gov.in) for Maharashtra
+          {% elif 'photo' in doc.lower() %}
+            Get from: Any photo studio — passport size (3.5cm × 4.5cm), white background
+          {% elif 'domicile' in doc.lower() %}
+            Get from: Tahsildar / Revenue Department in your district
+          {% elif 'address' in doc.lower() %}
+            Get from: Utility bill, Aadhaar, Voter ID, or Ration Card (any accepted)
+          {% else %}
+            Get from: Nearest government office or Common Service Centre (CSC)
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+  <!-- Tips -->
+  <div class="card" style="margin-top:1.5rem">
+    <div class="card-body">
+      <h3 style="font-size:1rem;font-weight:700;margin-bottom:1rem;display:flex;align-items:center;gap:8px">
+        💡 Important Tips
+      </h3>
+      <ul style="list-style:none;display:flex;flex-direction:column;gap:10px">
+        <li style="display:flex;gap:10px;font-size:0.88rem;color:var(--gray-dk)">
+          <span style="color:var(--saffron);flex-shrink:0">📌</span>
+          Always carry <strong>original documents + 2 photocopies</strong> when visiting any government office
+        </li>
+        <li style="display:flex;gap:10px;font-size:0.88rem;color:var(--gray-dk)">
+          <span style="color:var(--saffron);flex-shrink:0">📌</span>
+          Aadhaar number should be linked to your <strong>mobile number</strong> for OTP verification
+        </li>
+        <li style="display:flex;gap:10px;font-size:0.88rem;color:var(--gray-dk)">
+          <span style="color:var(--saffron);flex-shrink:0">📌</span>
+          If you don't have a bank account, open one for <strong>free at any PSU bank</strong> using Jan Dhan Yojana
+        </li>
+        <li style="display:flex;gap:10px;font-size:0.88rem;color:var(--gray-dk)">
+          <span style="color:var(--saffron);flex-shrink:0">📌</span>
+          Visit nearest <strong>Common Service Centre (CSC)</strong> for help with any document or application
+        </li>
+        <li style="display:flex;gap:10px;font-size:0.88rem;color:var(--gray-dk)">
+          <span style="color:var(--saffron);flex-shrink:0">📌</span>
+          All government services are <strong>free of charge</strong> — do not pay touts or middlemen
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Next Steps -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1.5rem">
+    <a href="{{ url_for('schemes.guide', scheme_id=scheme.id) }}" class="btn btn-primary" style="justify-content:center">
+      🧭 How to Apply →
+    </a>
+    <a href="{{ url_for('chatbot.chatbot') }}" class="btn btn-secondary" style="justify-content:center">
+      🤖 Ask AI for Help
+    </a>
+  </div>
+
+</div>
+
+<script>
+const total = {{ scheme.documents|length }};
+let checked = new Array(total).fill(false);
+
+function toggleDoc(el, idx) {
+  checked[idx] = !checked[idx];
+  el.classList.toggle('checked');
+  const count = checked.filter(Boolean).length;
+  document.getElementById('progress-text').textContent = `${count} / ${total}`;
+  document.getElementById('doc-progress').style.width = `${(count / total) * 100}%`;
+}
+</script>
+{% endblock %}

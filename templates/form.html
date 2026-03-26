@@ -1,0 +1,149 @@
+{% extends "base.html" %}
+{% block title %}Find My Schemes — SchemeSaathi{% endblock %}
+
+{% block content %}
+<div class="page-container-sm" style="padding-top:2.5rem;padding-bottom:3rem">
+
+  <!-- Header -->
+  <div style="text-align:center;margin-bottom:2.5rem">
+    <div class="hero-badge" style="background:rgba(255,107,53,0.08);color:var(--saffron);border-color:rgba(255,107,53,0.2);display:inline-flex;margin-bottom:1rem">
+      Step 1 of 1
+    </div>
+    <h1 style="font-size:1.8rem;font-weight:800">Tell Us About Yourself</h1>
+    <p style="color:var(--gray-md);margin-top:6px">
+      Your information is used only to match schemes. It is never shared with anyone.
+    </p>
+  </div>
+
+  <div class="card">
+    <div class="card-body" style="padding:2rem">
+      <form method="POST" action="{{ url_for('schemes.results') }}" id="eligibility-form">
+
+        <!-- Row 1: Income + Age -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+          <div class="form-group">
+            <label class="form-label">💰 Annual Family Income (₹)</label>
+            <input type="number" name="annual_income" class="form-control"
+                   placeholder="e.g. 150000" min="0" max="10000000" required>
+            <div class="form-hint">Total income of your household per year</div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">🎂 Your Age</label>
+            <input type="number" name="age" class="form-control"
+                   placeholder="e.g. 32" min="10" max="100" required>
+          </div>
+        </div>
+
+        <!-- Row 2: Gender + Caste -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+          <div class="form-group">
+            <label class="form-label">👤 Gender</label>
+            <select name="gender" class="form-control" required>
+              <option value="">Select gender</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+              <option value="other">Other / Prefer not to say</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">🏛️ Caste Category</label>
+            <select name="caste" class="form-control" required>
+              <option value="">Select category</option>
+              <option value="general">General / Open</option>
+              <option value="obc">OBC (Other Backward Class)</option>
+              <option value="sc">SC (Scheduled Caste)</option>
+              <option value="st">ST (Scheduled Tribe)</option>
+              <option value="nt">NT (Nomadic Tribe)</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Row 3: State + Area -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+          <div class="form-group">
+            <label class="form-label">📍 State</label>
+            <select name="state" class="form-control" required>
+              <option value="">Select state</option>
+              <option value="maharashtra">Maharashtra</option>
+              <option value="uttar_pradesh">Uttar Pradesh</option>
+              <option value="bihar">Bihar</option>
+              <option value="rajasthan">Rajasthan</option>
+              <option value="madhya_pradesh">Madhya Pradesh</option>
+              <option value="west_bengal">West Bengal</option>
+              <option value="karnataka">Karnataka</option>
+              <option value="andhra_pradesh">Andhra Pradesh</option>
+              <option value="telangana">Telangana</option>
+              <option value="gujarat">Gujarat</option>
+              <option value="punjab">Punjab</option>
+              <option value="haryana">Haryana</option>
+              <option value="other">Other State</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">🏘️ Area Type</label>
+            <select name="area_type" class="form-control" required>
+              <option value="">Select area</option>
+              <option value="rural">Rural (Village/Gram Panchayat)</option>
+              <option value="urban">Urban (City/Town)</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Occupation -->
+        <div class="form-group">
+          <label class="form-label">💼 Occupation / Work</label>
+          <select name="occupation" class="form-control" required>
+            <option value="">Select occupation</option>
+            <option value="farmer">Farmer / Agriculture</option>
+            <option value="daily_wage">Daily Wage Worker / Labourer</option>
+            <option value="self_employed">Self Employed / Small Business</option>
+            <option value="business_owner">Business Owner / Entrepreneur</option>
+            <option value="artisan">Artisan / Craftsperson / Weaver</option>
+            <option value="student">Student</option>
+            <option value="unemployed">Unemployed / Job Seeker</option>
+            <option value="government">Government Employee</option>
+            <option value="private">Private Sector Employee</option>
+            <option value="homemaker">Homemaker</option>
+          </select>
+        </div>
+
+        <!-- Row 4: BPL + Bank -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+          <div class="form-group">
+            <label class="form-label">📋 Do you have a BPL Card?</label>
+            <select name="bpl_card" class="form-control">
+              <option value="no">No</option>
+              <option value="yes">Yes — I have a BPL / Yellow Ration Card</option>
+            </select>
+            <div class="form-hint">BPL = Below Poverty Line</div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">🏦 Do you have a Bank Account?</label>
+            <select name="has_bank_account" class="form-control">
+              <option value="yes">Yes</option>
+              <option value="no">No</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- Privacy note -->
+        <div style="background:var(--saffron-bg);border-radius:var(--radius-sm);padding:1rem;margin-bottom:1.5rem;display:flex;gap:10px;align-items:flex-start">
+          <span style="font-size:1.2rem;flex-shrink:0">🔒</span>
+          <p style="font-size:0.83rem;color:var(--gray-dk);line-height:1.6">
+            <strong>Your data is safe.</strong> We do not store or share your personal information with any government agency or third party. This is used only to suggest schemes during your session.
+          </p>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-full btn-lg">
+          🎯 Find My Eligible Schemes
+        </button>
+
+      </form>
+    </div>
+  </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/form.js') }}"></script>
+{% endblock %}

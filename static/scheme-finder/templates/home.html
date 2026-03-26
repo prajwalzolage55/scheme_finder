@@ -1,0 +1,117 @@
+{% extends "base.html" %}
+{% block title %}SchemeSaathi — Find Government Schemes for Free{% endblock %}
+
+{% block content %}
+
+<!-- Hero -->
+<section class="hero">
+  <div style="position:relative;z-index:1">
+    <div class="hero-badge">🇮🇳 &nbsp; For Every Indian Citizen</div>
+    <h1>Find Government Schemes<br>You're <span>Eligible For</span></h1>
+    <p>
+      Millions of rupees in welfare benefits go unclaimed every year.
+      Enter your details in 60 seconds — we'll match you with every scheme you deserve.
+    </p>
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+      {% if session.user_id %}
+        <a href="{{ url_for('schemes.form') }}" class="btn btn-primary btn-lg">
+          🎯 Find My Schemes
+        </a>
+        <a href="{{ url_for('chatbot.chatbot') }}" class="btn btn-lg" style="background:rgba(255,255,255,0.12);color:white;border:1.5px solid rgba(255,255,255,0.25)">
+          🤖 Ask AI Assistant
+        </a>
+      {% else %}
+        <a href="{{ url_for('auth.register') }}" class="btn btn-primary btn-lg">
+          🚀 Get Started — It's Free
+        </a>
+        <a href="{{ url_for('auth.login') }}" class="btn btn-lg" style="background:rgba(255,255,255,0.12);color:white;border:1.5px solid rgba(255,255,255,0.25)">
+          Login
+        </a>
+      {% endif %}
+    </div>
+    <div class="stats-row">
+      <div class="stat-item"><div class="stat-num">25+</div><div class="stat-lbl">Schemes Listed</div></div>
+      <div class="stat-item"><div class="stat-num">₹0</div><div class="stat-lbl">Cost to Use</div></div>
+      <div class="stat-item"><div class="stat-num">60s</div><div class="stat-lbl">To Get Results</div></div>
+      <div class="stat-item"><div class="stat-num">AI</div><div class="stat-lbl">Powered Chatbot</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- How it Works -->
+<section style="padding:3rem 2rem;max-width:900px;margin:0 auto;text-align:center">
+  <div class="hero-badge" style="background:rgba(255,107,53,0.08);color:var(--saffron);border-color:rgba(255,107,53,0.2);margin-bottom:1rem">
+    How It Works
+  </div>
+  <h2 style="font-size:1.8rem;font-weight:800;margin-bottom:2.5rem">3 Simple Steps</h2>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:2rem;text-align:left">
+    <div style="display:flex;gap:1rem;align-items:flex-start">
+      <div style="width:48px;height:48px;border-radius:14px;background:var(--saffron);color:white;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.2rem;flex-shrink:0">1</div>
+      <div>
+        <h3 style="font-weight:700;margin-bottom:6px">Fill Your Profile</h3>
+        <p style="font-size:0.88rem;color:var(--gray-dk)">Enter income, age, gender, caste, location, occupation — takes under a minute.</p>
+      </div>
+    </div>
+    <div style="display:flex;gap:1rem;align-items:flex-start">
+      <div style="width:48px;height:48px;border-radius:14px;background:var(--saffron);color:white;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.2rem;flex-shrink:0">2</div>
+      <div>
+        <h3 style="font-weight:700;margin-bottom:6px">Get Matched</h3>
+        <p style="font-size:0.88rem;color:var(--gray-dk)">Our AI engine scans 25+ schemes and shows your eligibility match score.</p>
+      </div>
+    </div>
+    <div style="display:flex;gap:1rem;align-items:flex-start">
+      <div style="width:48px;height:48px;border-radius:14px;background:var(--saffron);color:white;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.2rem;flex-shrink:0">3</div>
+      <div>
+        <h3 style="font-weight:700;margin-bottom:6px">Apply with Guidance</h3>
+        <p style="font-size:0.88rem;color:var(--gray-dk)">Get step-by-step apply guide, document checklist, and AI support in Hindi/Marathi.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Features -->
+<div class="features-grid">
+  <div class="feature-card">
+    <div class="feature-icon">🎯</div>
+    <h3>Smart Eligibility Engine</h3>
+    <p>Rule-based + AI matching across income, caste, gender, location, age, and occupation criteria for all Central and Maharashtra state schemes.</p>
+  </div>
+  <div class="feature-card">
+    <div class="feature-icon">📍</div>
+    <h3>Location-Based Filtering</h3>
+    <p>Automatically includes Maharashtra state schemes when you're in Maharashtra. Central schemes are shown to everyone across India.</p>
+  </div>
+  <div class="feature-card">
+    <div class="feature-icon">🧾</div>
+    <h3>Document Checklist</h3>
+    <p>Know exactly which documents you need before visiting any office — Aadhaar, income certificate, caste certificate, and more.</p>
+  </div>
+  <div class="feature-card">
+    <div class="feature-icon">🤖</div>
+    <h3>Groq AI Chatbot</h3>
+    <p>Ask in Hindi, Marathi, or English: "Am I eligible for PMAY?" — get instant, personalised answers powered by Groq LLM.</p>
+  </div>
+  <div class="feature-card">
+    <div class="feature-icon">🗣️</div>
+    <h3>Voice Input Support</h3>
+    <p>Non-literate users can use voice to type in the chatbot — making the platform truly accessible to everyone.</p>
+  </div>
+  <div class="feature-card">
+    <div class="feature-icon">📲</div>
+    <h3>Mobile Friendly</h3>
+    <p>Large buttons, simple language, fast-loading design — works on any phone or computer, even on slow internet connections.</p>
+  </div>
+</div>
+
+<!-- CTA -->
+<section style="background:var(--navy);color:white;text-align:center;padding:4rem 2rem;margin-top:2rem">
+  <h2 style="font-size:2rem;font-weight:800;margin-bottom:1rem">Don't Miss Schemes You Deserve</h2>
+  <p style="color:rgba(255,255,255,0.7);margin-bottom:2rem;max-width:500px;margin-left:auto;margin-right:auto">
+    Ayushman Bharat, PM-KISAN, PMAY, MGNREGA, Ujjwala Yojana — are you claiming all of them?
+  </p>
+  <a href="{{ url_for('auth.register') if not session.user_id else url_for('schemes.form') }}" class="btn btn-primary btn-lg">
+    {{ "Check My Eligibility →" if session.user_id else "Start for Free →" }}
+  </a>
+</section>
+
+{% endblock %}

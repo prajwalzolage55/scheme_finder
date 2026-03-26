@@ -1,0 +1,6 @@
+flask
+flask-pymongo
+pymongo
+python-dotenv
+groq
+werkzeug
